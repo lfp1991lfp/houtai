@@ -1,0 +1,90 @@
+/**
+ * easyui css fix
+ */
+.l-btn-icon, .panel-icon {
+    line-height: 16px !important;
+}
+
+.validatebox-text {
+    height: 22px;
+}
+
+/**
+ * jeasyui some component
+ */
+
+.selectManyCheckbox, .selectOneRadio {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.selectManyCheckbox table, .selectOneRadio table {
+    font-size: 12px;
+}
+
+.selectManyCheckbox .selectManyCheckbox-text {
+    padding-right: 5px;
+}
+
+.jeasyui-fieldset {
+    padding: 0.6em 1em;
+    border: 1px solid #a8a8a8;
+}
+
+.jeasyui-fieldset-legend {
+    padding: 0.5em 0.9em;
+    border: 1px solid #a8a8a8;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.jeasyui-fieldset-content {
+
+}
+
+.selectOneRadio .selectOneRadio-text {
+    padding-right: 5px;
+}
+
+.jeasyui-upload {
+    display: inline-block;
+}
+
+.jeasyui-upload-msg {
+    color: red;
+}
+
+.jeasyui-upload-files {
+    display: block;
+    padding: 4px;
+    border: 1px dotted #3d3d3d;
+    border-radius: 4px;
+}
+
+.jeasyui-upload span a {
+    color: red;
+}
+
+.jeasyui-upload span a:hover {
+    color: #808080;
+}
+
+.jeasyui-body-mask {
+    position: absolute;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #F3F3F3;
+    text-align: center;
+    padding-top: 20%;
+}
+
+.jeasyui-body-mask-text span{
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background: url("themes/icons/loading.gif");
+}
+

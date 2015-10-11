@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.caoyi.sys.menu.model.Menu">
+
+	<resultMap type="menu" id="menuResult">
+		<result property="id" column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+		<result property="text" column="m_name" />
+		<result property="descri" column="m_descri" />
+		<result property="supers" column="m_supers" />
+		<result property="levels" column="m_levels" />
+		<result property="sorts" column="m_sorts" />
+		<result property="statu" column="m_statu" />
+		<result property="attributes" column="m_href" />
+		<result property="iconCls" column="m_icon "/>
+	</resultMap>
+	<select id="selectAllMenu" parameterType="menu" resultMap="menuResult">
+		select * from menu_info 
+		<where>
+		    <if test="statu != null">
+				m_statu=#{statu}
+			</if>
+			<if test="levels != null">
+				and m_levels=#{levels}
+			</if>
+			<if test="supers != null and supers != 0">
+				and m_supers=#{supers}
+			</if>
+		</where>
+	</select>
+
+	<select id="countMenu" parameterType="menu" resultType="java.lang.Integer">
+		select count(*) from menu_info 
+		<where>
+		    <if test="statu != null">
+				m_statu=#{statu}
+			</if>
+			<if test="levels != null">
+				and m_levels=#{levels}
+			</if>
+			<if test="supers != null and supers != 0">
+				and m_supers=#{supers}
+			</if>
+		</where>
+	</select>
+	<select id="findMenuById" parameterType="int" resultMap="menuResult">
+		select *
+		from menu where id=#{id}
+	</select>
+
+	<insert id="insertMenu" parameterType="menu">
+	 <![CDATA[
+		insert into
+		menu_info(m_name,m_descri,m_supers,m_levels,m_sorts,m_statu,m_href,m_icon) 
+		values(#{name},#{descri},#{supers},#{levels},#{sorts},#{statu},#{href},#{icon})
+		]]>
+	</insert>
+
+	<update id="updateMenu" parameterType="menu">
+		update menu_info
+		<set>
+		  <if test="name != null">
+			m_name=#{name},
+		</if>
+		<if test="descri != null">
+			m_descri=#{descri},
+		</if>
+		<if test="sorts != null">
+			m_sorts=#{sorts},
+		</if>
+		<if test="statu != null">
+			m_statu=#{statu},
+		</if>
+		</set>	
+		 where id=#{id}
+	</update>
+	<delete id="deleteMenu" parameterType="menu">
+		delete from menu_info
+		where
+		id=#{id}
+	</delete>
+
+</mapper>

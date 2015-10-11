@@ -1,0 +1,48 @@
+* {
+    font-family: '微软雅黑',verdana, helvetica, arial, sans-serif;;
+}
+
+.logo {
+    font-size: 21px;
+    color: #2e2e2e;
+    float: left;
+    margin-top: 15px;
+    text-transform: uppercase;
+    text-decoration: none;
+    margin-left: 3px;
+}
+
+.logo span {
+    color: #FF6C60;
+}
+
+table{
+
+}
+
+.tag-info{
+
+}
+
+.tag-info h1{
+    margin: 20px;
+}
+
+.tag-info h2{
+    color: red;
+    margin:20px;
+}
+
+.tag-info p{
+    margin-left: 20px;
+}
+
+.tag-info .property{
+    margin:20px;
+}
+
+.property h5{
+    height: 30px;
+    line-height: 30px;
+    margin-top: 20px;
+}

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+	<constant name="struts.devMode" value="true" />
+
+	<package name="json" namespace="/" extends="json-default">
+
+		<default-action-ref name="index" />
+
+		<global-results>
+			<result name="error">/WEB-INF/jsp/error.jsp</result>
+		</global-results>
+
+		<global-exception-mappings>
+			<exception-mapping exception="java.lang.Exception"
+				result="error" />
+		</global-exception-mappings>
+
+	</package>
+	<!-- Add packages here -->
+	<package name="user" namespace="/user" extends="json-default">
+		<action name="user_*" class="userAction" method="{1}">
+		   <result type="json">
+				<param name="root">resultObj</param>
+			</result>
+		</action>
+	</package>
+	<package name="menu" namespace="/menu" extends="json-default">
+		<action name="menu_*" class="menuAction" method="{1}" >
+		  <result type="json">
+				<param name="root">resultObj</param>
+		  </result>
+		</action>
+	</package>
+</struts>

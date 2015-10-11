@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.caoyi.sys.user.model.User">
+
+	<resultMap type="user" id="userResult">
+		<result property="id" column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+		<result property="userName" column="userName" />
+		<result property="remark" column="remark" />
+		<result property="passWrd" column="passWrd" />
+		<result property="passWrd1" column="passWrd1" />
+		<result property="createDate" column="createDate" />
+		<result property="updateDate" column="updateDate" />
+		<result property="groupCode" column="groupCode" />
+		<result property="tag" column="tag" />
+	</resultMap>
+	<select id="userLogin" parameterType="user" resultMap="userResult">
+		select * from user_info
+		<where>
+			<if test="userName != null and userName != '' ">
+				userName=#{userName}
+			</if>
+			<if test="passWrd != null and passWrd != ''">
+				and passWrd=#{passWrd}
+			</if>
+		</where>
+	</select>
+	<select id="selectAllUser" parameterType="user" resultMap="userResult">
+		select * from user_info 
+		<where>
+		    <if test="tag != null">
+				tag=#{tag}
+			</if>
+		    <if test="userName != null and userName != '' ">
+				and userName=#{userName}
+			</if>
+			<if test="condition != null">
+				and ${condition}
+			</if>
+		</where>
+	</select>
+
+	<select id="countUser" parameterType="user" resultType="java.lang.Integer">
+		select count(*) from user_info 
+		<where>
+		    <if test="tag != null">
+				tag=#{tag}
+			</if>
+		    <if test="userName != null and userName != '' ">
+				and userName=#{userName}
+			</if>
+			<if test="condition != null">
+				and ${condition}
+			</if>
+		</where>
+	</select>
+	<select id="findUserById" parameterType="int" resultMap="userResult">
+		select *
+		from user where id=#{id}
+	</select>
+
+	<insert id="insertUser" parameterType="user">
+	 <![CDATA[
+		insert into
+		user_info(userName,passWrd,passWrd1,tag,createDate,updateDate,groupCode,remark) 
+		values(#{userName},#{passWrd},#{passWrd1},#{tag},#{createDate},#{updateDate},#{groupCode},#{remark})
+		]]>
+	</insert>
+
+	<update id="updateUser" parameterType="user">
+		update user_info
+		<set>
+		  <if test="userName != null">
+			userName=#{userName},
+		</if>
+		<if test="passWrd != null">
+			passWrd=#{passWrd},
+		</if>
+		<if test="passWrd1 != null">
+			passWrd1=#{passWrd1},
+		</if>
+		<if test="remark != null">
+			remark=#{remark},
+		</if>
+		<if test="tag != null">
+			tag=#{tag},
+		</if>
+		<if test="updateDate != null">
+			updateDate=#{updateDate},
+		</if>
+		</set>	
+		 where id=#{id}
+	</update>
+    
+    <update id="userListUpdate" parameterType="java.util.List">
+        update user_info set tag = "0"
+        <where>
+           id in      
+           <foreach collection="list" item="item" index="intex" open="(" separator="," close=")">
+              #{item}
+           </foreach>
+        </where>     
+    </update>
+	<delete id="deleteUser" parameterType="user">
+		delete from user_info
+		where
+		id=#{id}
+	</delete>
+
+</mapper>
